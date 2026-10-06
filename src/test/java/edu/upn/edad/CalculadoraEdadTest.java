@@ -23,4 +23,12 @@ class CalculadoraEdadTest {
 
         assertEquals(25, CalculadoraEdad.calcularEdad(nacimiento, hoy));
     }
+
+    @Test
+    void edadElDiaDelCumpleanios() {
+        LocalDate nacimiento = LocalDate.of(2000, 9, 30);
+        LocalDate hoy = LocalDate.of(2026, 9, 30);
+
+        assertEquals(26, CalculadoraEdad.calcularEdad(nacimiento, hoy));
+    }
 }
