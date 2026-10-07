@@ -12,12 +12,7 @@ public class CalculadoraEdad {
 
         int edad = fechaActual.getYear() - fechaNacimiento.getYear();
 
-        boolean aunNoCumple =
-                fechaActual.getMonthValue() < fechaNacimiento.getMonthValue()
-                || (fechaActual.getMonthValue() == fechaNacimiento.getMonthValue()
-                    && fechaActual.getDayOfMonth() < fechaNacimiento.getDayOfMonth());
-
-        if (aunNoCumple) {
+        if (!yaCumplioAnios(fechaNacimiento, fechaActual)) {
             edad--;
         }
 
@@ -28,5 +23,12 @@ public class CalculadoraEdad {
         if (fechaNacimiento.isAfter(fechaActual)) {
             throw new IllegalArgumentException(MENSAJE_FECHA_FUTURA);
         }
+    }
+
+    private static boolean yaCumplioAnios(LocalDate fechaNacimiento, LocalDate fechaActual) {
+        if (fechaActual.getMonthValue() != fechaNacimiento.getMonthValue()) {
+            return fechaActual.getMonthValue() > fechaNacimiento.getMonthValue();
+        }
+        return fechaActual.getDayOfMonth() >= fechaNacimiento.getDayOfMonth();
     }
 }
